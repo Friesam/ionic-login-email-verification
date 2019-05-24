@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="userLogin" (ngSubmit)= "onSubmit(userLogin)">
+    <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input type= "text" placeholder="Enter your Username"
+        formControlName="username"
+        required>
+        </ion-input>
+        <!-- <div *ngIf=username.touched
+        class ="alert alert-danger">
+        <div *ngIf ="username.errors.required && username.errors">
+          This field is required
+        </div>
+        </div> -->
+
+      </ion-col>
+    </ion-row>
+    <div [formGroup]="account">
+      <ion-row>
+      <ion-col>
+        <ion-input type="password" placeholder="Enter your Password"
+        formControlName="password"
+        required>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <ion-input type="password" placeholder="Re-Enter your Password"
+          formControlName="confirmPwd" required>
+          </ion-input>
+          <span>
+            <a>forgot password</a>
+          </span>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+    </div>
+      <ion-col>
+      <ion-button size="large" color="primary">Submit</ion-button>
+    </ion-col>
+    <ion-col>
+        <ion-button size="large" color="warning">Cancel</ion-button>
+      </ion-col>
+    </ion-row> 
+  </ion-grid>
+  </form>
+</ion-content>
