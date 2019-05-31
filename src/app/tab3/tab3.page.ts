@@ -11,21 +11,21 @@ export class Tab3Page {
 
 
   constructor() {}
-  profileForm = new FormGroup({
-    firstname: new FormControl('', Validators.required),
-    lastname: new FormControl('',Validators.required),
-    address: new FormGroup(
-      {
-        street: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        state: new FormControl('', Validators.required),
-        country: new FormControl('', Validators.required),
-        zip: new FormControl('', Validators.required)
-      }
-    )
-  });
+  // profileForm = new FormGroup({
+  //   firstname: new FormControl('', Validators.required),
+  //   lastname: new FormControl('',Validators.required),
+  //   address: new FormGroup(
+  //     {
+  //       street: new FormControl('', Validators.required),
+  //       city: new FormControl('', Validators.required),
+  //       state: new FormControl('', Validators.required),
+  //       country: new FormControl('', Validators.required),
+  //       zip: new FormControl('', Validators.required)
+  //     }
+  //   )
+  // });
 
-  onSubmit() {
-    console.warn(this.profileForm.value);
-  }
+  // onSubmit() {
+  //   console.warn(this.profileForm.value);
+  // }
 }

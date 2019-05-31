@@ -5,51 +5,200 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="userLogin" (ngSubmit)= "onSubmit(userLogin)">
-    <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-input type= "text" placeholder="Enter your Username"
-        formControlName="username"
-        required>
-        </ion-input>
-        <!-- <div *ngIf=username.touched
-        class ="alert alert-danger">
-        <div *ngIf ="username.errors.required && username.errors">
-          This field is required
+<div class="container">
+  <form [formGroup]="this.userLogin" (ngSubmit)="onSubmit(this.userLogin.value)">
+    <ion-item>
+      <ion-label floating color="primary">Username
+      </ion-label>
+      <ion-input 
+      type = "text" 
+      formControlName="username" 
+      class="form-control" 
+      id="username"
+      name="username"
+      required></ion-input>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.username">
+          <div class="error-message" *ngIf="userLogin.get('username').hasError(validation.type) && (userLogin.get('username').dirty || userLogin.get('username').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-item>
+    <div formGroupName="account">
+        <ion-item>
+          <ion-label floating color="primary">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message" *ngIf="userLogin.get('matching_passwords').get('password').hasError(validation.type) && (validations_form.get('matching_passwords').get('password').dirty || validations_form.get('matching_passwords').get('password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
         </div>
-        </div> -->
-
-      </ion-col>
-    </ion-row>
-    <div [formGroup]="account">
-      <ion-row>
-      <ion-col>
-        <ion-input type="password" placeholder="Enter your Password"
-        formControlName="password"
-        required>
-        </ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col>
-          <ion-input type="password" placeholder="Re-Enter your Password"
-          formControlName="confirmPwd" required>
-          </ion-input>
-          <span>
-            <a>forgot password</a>
-          </span>
-        </ion-col>
-    </ion-row>
-    <ion-row>
-    </div>
-      <ion-col>
-      <ion-button size="large" color="primary">Submit</ion-button>
-    </ion-col>
-    <ion-col>
-        <ion-button size="large" color="warning">Cancel</ion-button>
-      </ion-col>
-    </ion-row> 
-  </ion-grid>
+  
+        <ion-item>
+          <ion-label floating color="primary">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirmPwd"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.confirmPwd">
+            <div class="error-message" *ngIf="userLogin.get('matching_passwords').get('confirmPwd').hasError(validation.type) && (userLogin.get('matching_passwords').get('confirmPwd').dirty || userLogin.get('matching_passwords').get('confirmPwd').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+            <div class="error-message" *ngIf="userLogin.get('matching_passwords').hasError(validation.type) && (userLogin.get('matching_passwords').get('confirm_password').dirty || userLogin.get('matching_passwords').get('confirmPwd').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </div>
   </form>
+
+  <ion-button full type="submit" [disabled]="!userLogin.valid">Submit</ion-button>
+
+</div>
+  
 </ion-content>
+
+
+<!-- <form [formGroup]="this.userLogin" >
+    <div>
+      <ion-input
+      type ="text"
+      formControlName="username"
+      placeholder="Enter your name"
+      id="username"
+      name="username"
+      required>
+ 
+      </ion-input>
+    </div>
+    <div [formGroup]="account">
+      <div>
+      <ion-input
+      type="text"
+      formControlName="password"
+      placeholder="Enter your password"
+      id="password"
+      name="password"
+      required>
+ 
+      </ion-input>
+    </div>
+    <div>
+      <ion-input
+      type="text"
+      formControlName="confirmPwd"
+      placeholder="Enter your password"
+      id="password"
+      name="password"
+      required>
+ 
+ 
+      </ion-input>
+    </div>
+    </div>
+    
+    <div>
+      <ion-button>
+        Submiit
+      </ion-button>
+    </div>
+  </form> -->
+
+  <!-- <form [formGroup]="userLogin" (ngSubmit)= "onSubmit(userLogin)">
+      <ion-input type= "text" placeholder="Enter your Username"
+      formControlName="username"
+      required>
+      </ion-input>
+      <div class="error" *ngIf="userLogin.get('username').hasError('required') && userLogin.get('username').touched">
+        Username is required
+      </div>
+      <div class="error" *ngIf="userLogin.get('username').hasError('minlength') && user.get('username').touched">
+        Minimum of 2 characters
+      </div>
+  <div [formGroup]="account">
+      <ion-input type="password" placeholder="Enter your Password"
+      formControlName="password"
+      required>
+      </ion-input>
+      <div
+        class="error"
+        *ngIf="userLogin.get('account').get('password').hasError('required') && userLogin.get('account').get('password').touched">
+        Password is required
+      </div>
+        <ion-input type="password" placeholder="Re-Enter your Password"
+        formControlName="confirmPwd" required>
+        </ion-input>
+        <div
+        class="error"
+        *ngIf="userLogin.get('account').get('confirmPwd').hasError('required') && userLogin.get('account').get('confirmPwd').touched">
+        Password is does not match
+      </div>
+        <span>
+          <a>forgot password</a>
+        </span>
+  </div>
+    <ion-button size="large" color="primary" [disabled]="userLogin.valid">Submit</ion-button>
+      <ion-button size="large" color="warning">Cancel</ion-button>
+</form> -->
+
+
+<!-- <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #userLogin="ngForm"> 
+        <div class="form-group">
+          <ion-input
+          type="text"
+          placeholder="Enter your username"
+          class="form-control"
+          id="username"
+          [(ngModel)]="userLogin.username"
+          name="username"
+          minlength="2"
+          required>
+          </ion-input>
+          <div [hidden]="username.valid || username.pristine"
+          class="alert alert-danger">
+          Username is required
+          </div>
+
+        </div>
+        <div class="form-group" ngModelGroup= "account">
+            <ion-input
+            type="text"
+            placeholder="Enter your password"
+            class="form-control"
+            id="password"
+            [(ngModel)]="userLogin.password"
+            name="password"
+            required>
+            </ion-input>
+            <div [hidden]="password.valid || password.pristine"
+            class="alert alert-danger">
+            Your password is required
+            </div>
+
+              <ion-input
+              type="text"
+              placeholder="Re-Enter your password"
+              class="form-control"
+              id="confirmPwd"
+              [(ngModel)]="userLogin.confirmPwd"
+              name="confirmPwd"
+              required>
+              </ion-input>
+              <div [hidden]="confirmPwd.valid || confirmPwd.pristine"
+              class="alert alert-danger">
+              Your password is required
+              </div>
+              <ion-button type="submit" [disabled]="!userLogin.form.valid">Submit</ion-button>
+            </div>
+            
+      </form>
+</div>
+</div> -->
