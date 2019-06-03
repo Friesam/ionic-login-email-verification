@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerForm">
+      <ion-item>
+          <ion-label
+          position="floating"
+          color="primary">
+          First Name
+          </ion-label>
+          <ion-input
+          type="text"
+          class="form-control"
+          formControlName="firstname"
+          required>
+      
+          </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label
+            position="floating"
+            color="primary">
+            Last Name
+            </ion-label>
+            <ion-input
+            type="text"
+            class="form-control"
+            formControlName="lastname"
+            required>
+      
+            </ion-input>
+      
+          </ion-item>
+          <div formGroupName="confirm_email">
+              <ion-item>
+                  <ion-label
+                  position="floating"
+                  color="primary">Email
+                  </ion-label>
+                  <ion-input
+                    type="email"
+                    class="form-control"
+                    formControlName="email"
+                    required>
+                    </ion-input>
+              
+                </ion-item>
+                <ion-item>
+                    <ion-label
+                    position="floating"
+                    color="primary">Confirm Email
+                    </ion-label>
+                    <ion-input
+                      type="email"
+                      class="form-control"
+                      formControlName="confirmemail"
+                      required>
+                      </ion-input>
+                
+                  </ion-item>
+          </div>
+          
+            <ion-item>
+                <ion-label
+                position="floating"
+                color="primary">
+                  City
+                </ion-label>
+                <ion-select 
+                class="form-control"
+                formControlName="city"
+                required
+                value="St John's" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option value="st john's">St John's</ion-select-option>
+                    <ion-select-option value="toronto">Toronto</ion-select-option>
+                    <ion-select-option value=victoria>Victoria</ion-select-option>
+                    <ion-select-option value="edmonton">Edmonton</ion-select-option>
+                  </ion-select>
+              </ion-item>
+              <ion-item>
+                  <ion-label
+                  position="floating"
+                  color="primary">
+                    Province
+                  </ion-label>
+                  <ion-select 
+                  class="form-control"
+                  formControlName="province"
+                  required
+                  value="Nl" okText="Okay" cancelText="Dismiss">
+                      <ion-select-option value="nl">NL</ion-select-option>
+                      <ion-select-option value="on">ON</ion-select-option>
+                      <ion-select-option value="bc">BC</ion-select-option>
+                      <ion-select-option value="ca">CA</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label
+                    position="floating"
+                    color="primary">
+                      Country
+                    </ion-label>
+                    <ion-select 
+                    class="form-control"
+                    formControlName="country"
+                    required
+                    value="CA" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option value="ca">CA</ion-select-option>
+                        <ion-select-option value="usa">USA</ion-select-option>
+                      </ion-select>
+                  </ion-item>
+              <ion-item>
+                  <ion-button size="large" color="primary">
+                    Submit
+                  </ion-button>
+              </ion-item>
+  </form>
+</ion-content>

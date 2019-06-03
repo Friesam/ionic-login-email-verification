@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', redirectTo: '', pathMatch: 'full' },
 
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
 
   
 ];
