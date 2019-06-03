@@ -25,7 +25,6 @@ export class LoginPage {
       password: ['',
       Validators.compose([
         Validators.required,
-        UsernameValidator.validUsername,
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ])],
@@ -33,7 +32,7 @@ export class LoginPage {
     }, 
     (formGroup: FormGroup) => {
       return PasswordValidator.areEqual(formGroup);
-    }),
+    })
 
   })
   constructor(public fb : FormBuilder) { }
