@@ -16,6 +16,7 @@
           type="text"
           class="form-control"
           formControlName="firstname"
+          placeholder="Enter your first name"
           required>
       
           </ion-input>
@@ -30,6 +31,7 @@
             type="text"
             class="form-control"
             formControlName="lastname"
+            placeholder="Enter your last name"
             required>
       
             </ion-input>
@@ -45,6 +47,7 @@
                     type="email"
                     class="form-control"
                     formControlName="email"
+                    placeholder="example@johndoe.com"
                     required>
                     </ion-input>
               
@@ -58,6 +61,7 @@
                       type="email"
                       class="form-control"
                       formControlName="confirmemail"
+                      placeholder="example@johndoe.com"
                       required>
                       </ion-input>
                 
@@ -70,50 +74,44 @@
                 color="primary">
                   City
                 </ion-label>
-                <ion-select 
+                <ion-input 
                 class="form-control"
                 formControlName="city"
+                placeholder="Enter your city"
                 required
-                value="St John's" okText="Okay" cancelText="Dismiss">
-                    <ion-select-option value="st john's">St John's</ion-select-option>
-                    <ion-select-option value="toronto">Toronto</ion-select-option>
-                    <ion-select-option value=victoria>Victoria</ion-select-option>
-                    <ion-select-option value="edmonton">Edmonton</ion-select-option>
-                  </ion-select>
+                >
+                </ion-input>
               </ion-item>
-              <ion-item>
-                  <ion-label
-                  position="floating"
-                  color="primary">
-                    Province
-                  </ion-label>
-                  <ion-select 
-                  class="form-control"
-                  formControlName="province"
-                  required
-                  value="Nl" okText="Okay" cancelText="Dismiss">
-                      <ion-select-option value="nl">NL</ion-select-option>
-                      <ion-select-option value="on">ON</ion-select-option>
-                      <ion-select-option value="bc">BC</ion-select-option>
-                      <ion-select-option value="ca">CA</ion-select-option>
-                    </ion-select>
-                </ion-item>
-                <ion-item>
-                    <ion-label
-                    position="floating"
-                    color="primary">
+                      <ion-item> 
+                    <ion-label 
+                      position="floating"
+                      color="primary">
                       Country
                     </ion-label>
-                    <ion-select 
-                    class="form-control"
-                    formControlName="country"
-                    required
-                    value="CA" okText="Okay" cancelText="Dismiss">
-                        <ion-select-option value="ca">CA</ion-select-option>
-                        <ion-select-option value="usa">USA</ion-select-option>
+                      <ion-select [(ngModel)]="selectedCountry.id" (ionChange)="onSelect($event.target.value)" class="form-control"
+                      formControlName="countries"
+                      required>
+                        <ion-select-option value="0"></ion-select-option>
+                        <ion-select-option *ngFor="let item of countries" value={{item.id}}>{{item.name}} 
+                        </ion-select-option>
                       </ion-select>
-                  </ion-item>
-              <ion-item>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label 
+                          position="floating"
+                          color="primary">
+                            State/Province
+                          </ion-label>
+                          <ion-select
+                          class="form-control"
+                          formControlName="province"
+                          required>
+                            <ion-select-option *ngIf= 'selectedCountry.id === 0' value="0"></ion-select-option>
+                            <ion-select-option *ngFor= "let item of states" value={{item.id}}>{{item.name}}
+                            </ion-select-option>
+                          </ion-select>
+                      </ion-item>  
+              <ion-item>  
                   <ion-button size="large" color="primary">
                     Submit
                   </ion-button>

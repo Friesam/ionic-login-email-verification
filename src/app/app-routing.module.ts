@@ -3,11 +3,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   
-  { path: '', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
 
-  { path: 'login', redirectTo: '', pathMatch: 'full' },
+  { path: ' ', redirectTo: 'tabs', pathMatch: 'full' },
 
-  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  //{ path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
 
   
