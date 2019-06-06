@@ -98,10 +98,13 @@ export class LoginPage implements OnInit {
       console.log("successful")
     }
 
-
     toTeamDetails() {
       
-      this.router.navigateByUrl(`/register`)
+      this.router.navigateByUrl(`/tab1`)
+  }
+  
+  toRegisterTeam() {
+    this.router.navigateByUrl(`/register`)
   }
 
 

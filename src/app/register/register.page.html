@@ -21,6 +21,13 @@
       
           </ion-input>
         </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.firstname">
+              <div class="error-message" *ngIf="registerForm.get('firstname') && (registerForm.get('firstname').dirty || registerForm.get('firstname').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
         <ion-item>
             <ion-label
             position="floating"
@@ -35,7 +42,13 @@
             required>
       
             </ion-input>
-      
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.lastname">
+                  <div class="error-message" *ngIf="registerForm.get('lastname')&& (registerForm.get('lastname').dirty || registerForm.get('lastname').touched)">
+                    {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
           </ion-item>
           <div formGroupName="confirm_email">
               <ion-item>
@@ -50,7 +63,13 @@
                     placeholder="example@johndoe.com"
                     required>
                     </ion-input>
-              
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validation_messages.email">
+                          <div class="error-message" *ngIf="registerForm.get('email')&& (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                            {{ validation.message }}
+                          </div>
+                        </ng-container>
+                      </div>
                 </ion-item>
                 <ion-item>
                     <ion-label
@@ -64,6 +83,13 @@
                       placeholder="example@johndoe.com"
                       required>
                       </ion-input>
+                      <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.confirmemail">
+                            <div class="error-message" *ngIf="registerForm.get('confirmemail')&& (registerForm.get('confirmemail').dirty || registerForm.get('confirmemail').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
                 
                   </ion-item>
           </div>
@@ -81,6 +107,13 @@
                 required
                 >
                 </ion-input>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validation_messages.city">
+                      <div class="error-message" *ngIf="registerForm.get('city')&& (registerForm.get('city').dirty || registerForm.get('city').touched)">
+                        {{ validation.message }}
+                      </div>
+                    </ng-container>
+                  </div>
               </ion-item>
                       <ion-item> 
                     <ion-label 
@@ -95,6 +128,13 @@
                         <ion-select-option *ngFor="let item of countries" value={{item.id}}>{{item.name}} 
                         </ion-select-option>
                       </ion-select>
+                      <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.countries">
+                            <div class="error-message" *ngIf="registerForm.get('countries')&& (registerForm.get('countries').dirty || registerForm.get('countries').touched)">
+                              {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
                       </ion-item>
                       <ion-item>
                           <ion-label 
@@ -110,9 +150,16 @@
                             <ion-select-option *ngFor= "let item of states" value={{item.id}}>{{item.name}}
                             </ion-select-option>
                           </ion-select>
+                          <div class="validation-errors">
+                              <ng-container *ngFor="let validation of validation_messages.province">
+                                <div class="error-message" *ngIf="registerForm.get('province')&& (registerForm.get('province').dirty || registerForm.get('province').touched)">
+                                  {{ validation.message }}
+                                </div>
+                              </ng-container>
+                            </div>
                       </ion-item>  
               <ion-item>  
-                  <ion-button size="large" color="primary">
+                  <ion-button size="large" color="primary" (click)="toNextPage()">
                     Submit
                   </ion-button>
               </ion-item>
