@@ -5,66 +5,36 @@
 </ion-header>
 
 <ion-content>
-<div class="container">
-  <form [formGroup]="userLogin">
+<div class="formGroup">
     <ion-item>
-      <ion-label floating color="primary">Username
+      <ion-label floating color="primary">Email
       </ion-label>
       <ion-input 
       type = "text" 
-      formControlName="username" 
-      class="form-control" 
+      #userName 
+      class="formControl" 
       required></ion-input>
-      <div class="validation-errors">
-        <ng-container *ngFor="let validation of validation_messages.username">
-          <div class="error-message" *ngIf="userLogin.get('username').hasError(validation.type) && (userLogin.get('username').dirty || userLogin.get('username').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
     </ion-item>
-    <div formGroupName="matching_passwords">
+   </div>
+    <div class="formGroup">
         <ion-item>
           <ion-label floating color="primary">Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.password">
-            <div class="error-message" *ngIf="userLogin.get('matching_passwords').get('password').hasError(validation.type) && (userLogin.get('matching_passwords').get('password').dirty || userLogin.get('matching_passwords').get('password').touched)">
-              {{ validation.message }}
-            </div>
-          </ng-container>
-        </div>
-  
-        <ion-item>
-          <ion-label floating color="primary">Confirm Password</ion-label>
-          <ion-input type="password" formControlName="confirmPwd"></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.confirmPwd">
-            <div class="error-message" *ngIf="userLogin.get('matching_passwords').get('confirmPwd').hasError(validation.type) && (userLogin.get('matching_passwords').get('confirmPwd').dirty || userLogin.get('matching_passwords').get('confirmPwd').touched)">
-              {{ validation.message }}
-            </div>
-          </ng-container>
-        </div>
+          <ion-input type="password" class="formControl" placeholder="Password" #userPassword required></ion-input>
+        </ion-item> 
+      
       </div>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.matching_passwords">
-            <div class="error-message" *ngIf="userLogin.get('matching_passwords').hasError(validation.type) && 
-            (userLogin.get('matching_passwords').get('confirmPwd').dirty || 
-            userLogin.get('matching_passwords').get('confirmPwd').touched)">
-              {{ validation.message }}
-            </div>
-          </ng-container>
+        <div class="formGroup"> 
+            <ion-button full type="submit" (click)="authService.SignIn(userName.value, userPassword.value)">Sign in</ion-button>
         </div>
-     
-  </form>
-
-  <ion-button full type="submit" (click)="toTeamDetails()"[disabled]="!userLogin.valid">Submit</ion-button>
-  <ion-button full type="submit" (click)="toRegisterTeam()">Sign Up</ion-button>
-
-</div>
-  
+        <div class="formGroup">
+           <ion-button type="submit" (click)="authService.GoogleAuth()">Sign in With <ion-icon name="logo-google"></ion-icon></ion-button>
+        </div>
+        <div class="forgot-passpword">
+          <span [routerLink]="['/tab2']" routerLinkActive="router-link-active" >Forgot pasword</span>
+        </div>
+        <div>
+          <span>I do not have an account <span [routerLink]="['/register']" routerLinkActive="router-link-active"> Sign Up</span></span>
+        </div>
 </ion-content>
 
 

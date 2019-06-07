@@ -4,6 +4,7 @@ import { CountriesService} from '../service/countries.service'
 import { Country } from './country';
 import { States } from './states';
 import { Router } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterPage {
   
   constructor(private fb: FormBuilder,
     public _countriesList: CountriesService,
+    public authService: AuthService, 
     public router: Router) {
       this.countries = this._countriesList.getCountries()
      }
@@ -47,7 +49,7 @@ export class RegisterPage {
     ],
     'email': [
       {type: 'required', message: "Email os required"},
-      
+
       {type: 'pattern', message: "Your email is incorrect "}
     ],
     'confirmemail': [

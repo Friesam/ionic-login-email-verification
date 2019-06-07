@@ -3,7 +3,50 @@
     <ion-title>tab1</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-nav>
+    <a routerLink="/register">
+      <span class="dasboard-text">Dashboard</span>
+      </a>
+</ion-nav>
+<div> 
+  <ion-nav>
+    <ul>
+      <li>
+        <a>
+        <i>User profile</i>
+      </a>
+    </li>
+      <li> 
+        <a (click)="authService.SignOut()">
+          <i></i>
+        </a>
+      </li>
+    </ul>
+  </ion-nav>
+</div>
 
 <ion-content>
-
+        <div class="inner-adjust"class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">User Profile</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" *ngIf="authService.userData as user">
+            <div class="col-md-12">
+              <div class="media">
+                <ion-img class="align-self-start mr-5 img-thumbnail rounded-circle" [src]="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+                  alt="{{user.displayName}}"></ion-img>
+                <div class="media-body">
+                  <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                  <p>User ID: <strong>{{user.uid}}</strong></p>
+                  <p>Email: <strong>{{user.email}}</strong></p>
+                  <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
 </ion-content>

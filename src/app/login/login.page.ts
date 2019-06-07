@@ -6,6 +6,7 @@ import { PasswordValidator } from './validators/password.validator'
 import { Tab1Page} from '../tab1/tab1.page'
 import { UsernameValidator } from './validators/username.validator'
 import { Router } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -43,55 +44,8 @@ export class LoginPage implements OnInit {
 
     // })
   }
-  userLogin= this.fb.group({
-    username: ['', Validators.compose([
-      Validators.maxLength(25),
-      Validators.minLength(5),
-      Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-      UsernameValidator.validUsername,
-      Validators.required
-    ])],
-    matching_passwords: this.fb.group({
-      password: ['',
-      Validators.compose([
-        Validators.required,
-        Validators.minLength(5),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-      ])],
-      confirmPwd: ['', Validators.required]
-    }, 
-    (formGroup: FormGroup) => {
-      return PasswordValidator.areEqual(formGroup);
-    })
-
-  })
  
-  constructor(public fb : FormBuilder, public router: Router) { }
-
-
-     validation_messages = {
-       'username': [
-        { type: 'required', message: 'Username is required.' },
-        { type: 'minlength', message: 'Username must be at least 5 characters long.' },
-        { type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
-        { type: 'pattern', message: 'Your username must contain only numbers and letters.' },
-        { type: 'validUsername', message: 'Your username has already been taken.' }
-        
-      ],
-       'password': [
-        { type: 'required', message: 'Password is required.' },
-        { type: 'minlength', message: 'Password must be at least 5 characters long.' },
-        { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
-       ],
-       'confirmPwd': [
-        { type: 'required', message: 'Confirm password is required' }
-      ],
-      'matching_passwords': [
-        { type: 'areEqual', message: 'Password mismatch' }
-      ]
-     }
-
-     
+  constructor(public fb : FormBuilder, public router: Router, public authService : AuthService) { }
 
     onSubmit(values){
       // this.navCtrl.push(Tab1Page)\
@@ -99,10 +53,9 @@ export class LoginPage implements OnInit {
     }
 
     toTeamDetails() {
-      
       this.router.navigateByUrl(`/tab1`)
   }
-  
+
   toRegisterTeam() {
     this.router.navigateByUrl(`/register`)
   }

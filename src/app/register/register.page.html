@@ -5,8 +5,32 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="registerForm">
+  <!-- <form [formGroup]="registerForm"> -->
+    <div class= "formGroup">
       <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" class="formControl" placeholder="Email Address" #userEmail required></ion-input>
+      </ion-item>
+    
+    </div>
+    <div class= "formGroup">
+      <ion-item>
+         <ion-label>password</ion-label>
+        <ion-input type="password" class="formControl" placeholder="Password" #userPassword required></ion-input>
+      </ion-item>
+    </div>
+    <div class= "formGroup">
+        <ion-button type="submit" (click)="authService.GoogleAuth()">Sign Up With <ion-icon name="logo-google"></ion-icon></ion-button>
+    </div>
+    <div class='formGroup '>
+       <ion-button full type="submit" (click)="authService.SignUp(userEmail.value, userPassword.value)">Sign Up</ion-button>
+    </div>
+       
+        <div>
+            <span>Already have an account? <span class="redirect" routerLink="/login">Log In</span></span>
+        </div>
+
+      <!-- <ion-item>
           <ion-label
           position="floating"
           color="primary">
@@ -157,11 +181,7 @@
                                 </div>
                               </ng-container>
                             </div>
-                      </ion-item>  
-              <ion-item>  
-                  <ion-button size="large" color="primary" (click)="toNextPage()">
-                    Submit
-                  </ion-button>
-              </ion-item>
-  </form>
+                      </ion-item>   -->
+             
+  <!-- </form> -->
 </ion-content>

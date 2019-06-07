@@ -1,5 +1,7 @@
 {
   "name": "chattty",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
